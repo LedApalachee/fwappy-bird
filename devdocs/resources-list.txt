@@ -1,0 +1,11 @@
+sprites from:
+* assets/bodies 						# this folder contains various sprites for bird's body
+* assets/floor/floor_fill.png
+* assets/floor/floor_head.png
+* assets/tube-parts/tube-end.png
+* assets/tube-parts/tube-neck.png
+* assets/wing.png
+
+
+project icon from:
+* assets/meta/icon.png
