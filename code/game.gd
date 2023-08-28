@@ -4,7 +4,7 @@ var bird_bodies = []
 var bird_bodies_choice = RandomNumberGenerator.new()
 
 enum GameState { NONE, AT_START_SCREEN, AT_PLAYING, AT_GAME_OVER }
-var current_state = GameState.AT_START_SCREEN
+var current_state = GameState.AT_PLAYING
 
 var count = 0
 
@@ -44,30 +44,38 @@ func new_run():
 
 func _ready():
 	load_bird_bodies()
+	$background.position.y = get_viewport().size.y * (1 - $world/floor.fill_ratio)
+	$background.position.x = get_viewport().size.x / 2
+	new_run()
+	$ui/color_rect.start_opening()
 
 
+func _input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed and $no_input_timer.time_left <= 0:
+			match current_state:
 
-func _physics_process(dt):
-	match current_state:
+				GameState.AT_GAME_OVER:
+						$world.clear()
+						new_run()
+						current_state = GameState.AT_PLAYING
+						$ui/count_label.visible = true
+						$ui/game_over_label.visible = false
+						count = 0
 
-		GameState.AT_GAME_OVER:
-			if Input.is_action_just_pressed("ui_accept"):
-				$world.clear()
-				new_run()
-				current_state = GameState.AT_PLAYING
 
-		GameState.AT_START_SCREEN:
-			if Input.is_action_just_pressed("ui_accept"):
-				new_run()
-				current_state = GameState.AT_PLAYING
+func _physics_process(delta):
+	$ui/count_label.text = str(count)
+	if Input.is_action_just_pressed("exit"):
+		get_tree().quit()
 
 
 
 func _on_world_game_over():
 	current_state = GameState.AT_GAME_OVER
-
+	$ui/animation_player.play("game_over")
+	$no_input_timer.start()
 
 
 func _on_world_point_captured():
 	count += 1
-	print(count)

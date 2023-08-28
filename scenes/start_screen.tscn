@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/fonts/Quinquefive-ALoRM.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://code/start_screen.gd" type="Script" id=2]
+[ext_resource path="res://code/color_rect.gd" type="Script" id=3]
+[ext_resource path="res://assets/backgrounds/background.png" type="Texture" id=4]
+[ext_resource path="res://code/floor.gd" type="Script" id=5]
+[ext_resource path="res://assets/floor/floor_fill.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="start_screen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -658, -315 )
+script = ExtResource( 2 )
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="background_sprite" type="Sprite" parent="background"]
+position = Vector2( 0, -1024 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="floor" type="StaticBody2D" parent="."]
+collision_layer = 2
+script = ExtResource( 5 )
+scrolling_speed = 175
+segment_scale = 2
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="floor"]
+shape = SubResource( 2 )
+
+[node name="floor_fill" type="Sprite" parent="floor"]
+texture = ExtResource( 6 )
+
+[node name="segments" type="Node2D" parent="floor"]
+
+[node name="hitbox" type="Area2D" parent="floor"]
+collision_layer = 2
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="floor/hitbox"]
+shape = SubResource( 3 )
+
+[node name="tap_to_start_label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -155.0
+margin_top = -14.0
+margin_right = 157.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 1 )
+text = "Tap to start"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="author" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+margin_left = -76.0
+margin_top = -15.0
+margin_right = 75.0
+margin_bottom = 15.0
+text = "Made by Fuat Chumarin
+            Ufa, 2023"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="fwappy_label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+margin_left = -124.0
+margin_top = -18.8
+margin_right = 128.0
+margin_bottom = 22.2
+custom_fonts/font = SubResource( 4 )
+text = "Fwappy"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bird_label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.17
+anchor_right = 0.5
+anchor_bottom = 0.17
+margin_left = -82.0
+margin_top = -17.88
+margin_right = 86.0
+margin_bottom = 23.12
+custom_fonts/font = SubResource( 4 )
+text = "Bird"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="color_rect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 3 )
+
+[connection signal="body_entered" from="floor/hitbox" to="floor" method="_on_hitbox_body_entered"]
+[connection signal="fade_finished" from="color_rect" to="." method="_on_color_rect_fade_finished"]
+[connection signal="open_finished" from="color_rect" to="." method="_on_color_rect_open_finished"]

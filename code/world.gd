@@ -29,7 +29,7 @@ func enable_scrolling():
 
 func create_ceil():
 	var new_ceil = ceil_scene.instance()
-	new_ceil.position.x = get_viewport().size.x / 2
+	new_ceil.position.x = get_viewport().size.x / 5
 	new_ceil.position.y = -20
 	add_child(new_ceil)
 
@@ -85,11 +85,15 @@ func clear():
 
 
 func _on_point_captured():
+	$point_capture_player.play()
 	emit_signal("point_captured")
 
 
 
 func _on_bird_bumped():
+	if not $bird.is_alive:
+		return
+	$bird_bump_player.play()
 	$bird.is_alive = false
 	$bird.fall_speed_limit *= 100
 	$bird.gravity *= 2
