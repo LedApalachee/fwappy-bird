@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/fonts/Quinquefive-ALoRM.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://code/start_screen.gd" type="Script" id=2]
@@ -18,7 +18,13 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 35
+size = 27
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 27
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
@@ -89,37 +95,36 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="fwappy_label" type="Label" parent="."]
+[node name="game_title" type="VBoxContainer" parent="."]
 anchor_left = 0.5
-anchor_top = 0.1
+anchor_top = 0.15
 anchor_right = 0.5
-anchor_bottom = 0.1
-margin_left = -124.0
-margin_top = -18.8
-margin_right = 128.0
-margin_bottom = 22.2
+anchor_bottom = 0.15
+margin_left = -100.0
+margin_top = -60.0
+margin_right = 100.0
+margin_bottom = 60.0
+
+[node name="fwappy" type="Label" parent="game_title"]
+margin_right = 200.0
+margin_bottom = 58.0
+size_flags_vertical = 7
 custom_fonts/font = SubResource( 4 )
 text = "Fwappy"
-__meta__ = {
-"_edit_lock_": true
-}
+align = 1
+valign = 1
 
-[node name="bird_label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.17
-anchor_right = 0.5
-anchor_bottom = 0.17
-margin_left = -82.0
-margin_top = -17.88
-margin_right = 86.0
-margin_bottom = 23.12
-custom_fonts/font = SubResource( 4 )
+[node name="bird" type="Label" parent="game_title"]
+margin_top = 62.0
+margin_right = 200.0
+margin_bottom = 120.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 5 )
 text = "Bird"
-__meta__ = {
-"_edit_lock_": true
-}
+align = 1
 
 [node name="color_rect" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
