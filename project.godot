@@ -26,19 +26,11 @@ gdscript/warnings/deprecated_keyword=false
 
 window/size/width=384
 window/size/height=768
-window/size/fullscreen=true
 window/handheld/orientation="portrait"
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
-
-[importer_defaults]
-
-texture={
-"detect_3d": false,
-"flags/filter": false
-}
 
 [input]
 
@@ -85,4 +77,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"
