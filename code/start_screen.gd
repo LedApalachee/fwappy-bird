@@ -24,6 +24,7 @@ var cur_state = StartScreenState.INITIAL_BLACK_SCREEN
 var timer = 0.0
 
 var tapped = false
+var button_pressed = false
 
 
 func _ready():
@@ -31,10 +32,13 @@ func _ready():
 	$background.position.y = get_viewport().size.y * (1 - $floor.fill_ratio)
 
 
-func _input(event):
-	if event is InputEventScreenTouch:
-		if event.pressed:
-			tapped = true
+#func _input(event):
+#	if event is InputEventScreenTouch:
+#		if event.pressed:
+#			if not button_pressed:
+#				tapped = true
+#			else:
+#				button_pressed = false
 
 
 func _physics_process(delta):
@@ -52,7 +56,9 @@ func _physics_process(delta):
 				timer = 0.0
 			
 		StartScreenState.WAITING_FOR_TAP:
+			$color_rect.visible = false
 			if tapped:
+				$color_rect.visible = true
 				prev_state = cur_state
 				cur_state = StartScreenState.AFTERTAP_FADING
 				$color_rect.start_fading()
@@ -74,8 +80,15 @@ func _on_color_rect_fade_finished():
 
 
 func _on_color_rect_open_finished():
-	match cur_state:
-		
-		StartScreenState.INITIAL_OPENING:
-			prev_state = cur_state
-			cur_state = StartScreenState.WAITING_FOR_TAP
+	prev_state = cur_state
+	cur_state = StartScreenState.WAITING_FOR_TAP
+
+
+func _on_reset_score_button_pressed():
+	button_pressed = true
+	var dir = Directory.new()
+	dir.remove("user://score.save")
+
+
+func _on_tap_area_pressed():
+	tapped = true
