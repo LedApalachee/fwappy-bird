@@ -20,7 +20,7 @@ func list_files(directory):
 		var file = dir.get_next()
 		if file == "":
 			break
-		else:
+		elif not file.begins_with("."):
 			files.append((directory + "/" + file).trim_suffix(".import"))
 
 	dir.list_dir_end()
