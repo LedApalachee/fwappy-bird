@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://code/game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/world.tscn" type="PackedScene" id=2]
@@ -9,6 +9,17 @@
 [sub_resource type="DynamicFont" id=1]
 size = 48
 outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 15
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
@@ -36,13 +47,13 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.857143 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("game_over_label:visible")
+tracks/1/path = NodePath("game_over:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.025 ),
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -77,29 +88,56 @@ custom_fonts/font = SubResource( 1 )
 align = 1
 valign = 1
 
-[node name="game_over_label" type="Label" parent="ui"]
+[node name="game_over" type="VBoxContainer" parent="ui"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.4
 anchor_right = 0.5
 anchor_bottom = 0.4
-margin_left = -142.5
-margin_top = -9.5
-margin_right = 142.5
-margin_bottom = 9.5
+margin_left = -191.0
+margin_top = -48.0
+margin_right = 192.0
+margin_bottom = 49.0
+
+[node name="you_hit_the_score" type="Label" parent="ui/game_over"]
+margin_right = 383.0
+margin_bottom = 29.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 5 )
+text = "You've hit the score!"
+align = 1
+valign = 1
+
+[node name="old_score_label" type="Label" parent="ui/game_over"]
+margin_top = 33.0
+margin_right = 383.0
+margin_bottom = 63.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 6 )
+text = "Max count: 12"
+align = 1
+valign = 1
+
+[node name="tap_to_continue" type="Label" parent="ui/game_over"]
+margin_top = 67.0
+margin_right = 383.0
+margin_bottom = 97.0
+size_flags_vertical = 7
 custom_fonts/font = SubResource( 4 )
 text = "Tap to continue"
-
-[node name="animation_player" type="AnimationPlayer" parent="ui"]
-reset_on_save = false
-anims/RESET = SubResource( 2 )
-anims/game_over = SubResource( 3 )
+align = 1
+valign = 1
 
 [node name="color_rect" type="ColorRect" parent="ui"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 4 )
+
+[node name="animation_player" type="AnimationPlayer" parent="ui"]
+reset_on_save = false
+anims/RESET = SubResource( 2 )
+anims/game_over = SubResource( 3 )
 
 [node name="no_input_timer" type="Timer" parent="."]
 wait_time = 0.5
