@@ -57,6 +57,8 @@ func _physics_process(delta):
 				get_tree().change_scene("res://scenes/game.tscn")
 
 
+
+
 func _on_color_rect_fade_finished():
 	cur_state = StartScreenState.AFTERTAP_BLACK_SCREEN
 
