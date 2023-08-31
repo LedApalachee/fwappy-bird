@@ -45,12 +45,14 @@ func load_score():
 	else:
 		score_file.open("user://score.save", File.READ)
 		max_count = score_file.get_32()
+		score_file.close()
 	$ui/game_over/old_score_label.text = "Max count: " + str(max_count)
 
 
 func save_score():
 	score_file.open("user://score.save", File.WRITE)
 	score_file.store_32(max_count)
+	score_file.close()
 
 
 
