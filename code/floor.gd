@@ -1,8 +1,8 @@
 extends StaticBody2D
 
 export var fill_ratio = 0.2 # which part of screen it occupies
-export var scrolling_speed = 100
-export var segment_scale = 1
+export var scrolling_speed = 175.0
+export var segment_scale = 2.0
 
 var FLOOR_SEGMENT_SPRITE_WIDTH
 var FLOOR_SEGMENT_SPRITE_HEIGHT

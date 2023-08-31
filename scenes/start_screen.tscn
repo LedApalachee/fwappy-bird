@@ -48,8 +48,6 @@ __meta__ = {
 [node name="floor" type="StaticBody2D" parent="."]
 collision_layer = 2
 script = ExtResource( 5 )
-scrolling_speed = 175
-segment_scale = 2
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="floor"]
 shape = SubResource( 2 )
