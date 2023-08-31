@@ -2,10 +2,7 @@ extends Control
 
 
 export(float) var initial_black_screen_time = 1.0
-export(float) var initial_opening_time = 1.0
-export(float) var aftertap_fading_time = 1.0
 export(float) var aftertap_black_screen_time = 0.2
-export(float) var aftertap_opening_time = 1.0
 
 
 enum StartScreenState {
@@ -18,7 +15,6 @@ AFTERTAP_BLACK_SCREEN,
 AFTERTAP_OPENING
 }
 
-var prev_state = StartScreenState.NONE
 var cur_state = StartScreenState.INITIAL_BLACK_SCREEN
 
 var timer = 0.0
@@ -32,14 +28,6 @@ func _ready():
 	$background.position.y = get_viewport().size.y * (1 - $floor.fill_ratio)
 
 
-#func _input(event):
-#	if event is InputEventScreenTouch:
-#		if event.pressed:
-#			if not button_pressed:
-#				tapped = true
-#			else:
-#				button_pressed = false
-
 
 func _physics_process(delta):
 	match cur_state:
@@ -48,9 +36,7 @@ func _physics_process(delta):
 			if timer < initial_black_screen_time:
 				$color_rect.color.a = 1.0
 				timer += delta
-				prev_state = cur_state
 			else:
-				prev_state = cur_state
 				cur_state = StartScreenState.INITIAL_OPENING
 				$color_rect.start_opening()
 				timer = 0.0
@@ -59,7 +45,6 @@ func _physics_process(delta):
 			$color_rect.visible = false
 			if tapped:
 				$color_rect.visible = true
-				prev_state = cur_state
 				cur_state = StartScreenState.AFTERTAP_FADING
 				$color_rect.start_fading()
 		
@@ -67,20 +52,16 @@ func _physics_process(delta):
 			if timer < aftertap_black_screen_time:
 				$color_rect.color.a = 1.0
 				timer += delta
-				prev_state = cur_state
 			else:
-				prev_state = cur_state
 				cur_state = StartScreenState.AFTERTAP_OPENING
 				get_tree().change_scene("res://scenes/game.tscn")
 
 
 func _on_color_rect_fade_finished():
-	prev_state = cur_state
 	cur_state = StartScreenState.AFTERTAP_BLACK_SCREEN
 
 
 func _on_color_rect_open_finished():
-	prev_state = cur_state
 	cur_state = StartScreenState.WAITING_FOR_TAP
 
 
