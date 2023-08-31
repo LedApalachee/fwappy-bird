@@ -1,7 +1,7 @@
 extends Node
 
-export(float) var gravity = 10
-export(float) var flap_speed = 500
-export(float) var fall_speed_limit = 500
-export(float) var rotation_speed = 5
-export(float) var bird_scale = 1
+export(float) var gravity = 40
+export(float) var flap_speed = 550
+export(float) var fall_speed_limit = 1000
+export(float) var rotation_speed = 3
+export(float) var bird_scale = 0.6

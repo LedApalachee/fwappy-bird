@@ -54,7 +54,6 @@ func _ready():
 	FLOOR_SEGMENT_SPRITE_WIDTH = temp_sprite.get_rect().size.x
 	FLOOR_SEGMENT_SPRITE_HEIGHT = temp_sprite.get_rect().size.y
 	temp_sprite.queue_free()
-	reset_position()
 
 
 

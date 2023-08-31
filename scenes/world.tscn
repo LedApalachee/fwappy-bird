@@ -19,24 +19,13 @@ script = ExtResource( 3 )
 
 [node name="obstacles" type="Node2D" parent="."]
 script = ExtResource( 5 )
-scrolling_speed = 175.0
-gap = 80.0
-obstacle_scale = 3.0
-obstacle_interval = 275.0
 
 [node name="bird_settings" type="Node" parent="."]
 script = ExtResource( 1 )
-gravity = 40.0
-flap_speed = 550.0
-fall_speed_limit = 1000.0
-rotation_speed = 3.0
-bird_scale = 0.6
 
 [node name="floor" type="StaticBody2D" parent="."]
 collision_layer = 2
 script = ExtResource( 2 )
-scrolling_speed = 175
-segment_scale = 2
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="floor"]
 shape = SubResource( 1 )

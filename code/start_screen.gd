@@ -4,6 +4,8 @@ extends Control
 export(float) var initial_black_screen_time = 1.0
 export(float) var aftertap_black_screen_time = 0.2
 
+export(float) var global_scale_value = 1
+
 
 enum StartScreenState {
 NONE,
@@ -24,6 +26,7 @@ var button_pressed = false
 
 
 func _ready():
+	to_scale()
 	$background.position.x = get_viewport().size.x / 2
 	$background.position.y = get_viewport().size.y * (1 - $floor.fill_ratio)
 
@@ -55,6 +58,28 @@ func _physics_process(delta):
 			else:
 				cur_state = StartScreenState.AFTERTAP_OPENING
 				get_tree().change_scene("res://scenes/game.tscn")
+
+
+
+
+func to_scale():
+	$floor.scrolling_speed *= global_scale_value
+	$floor.segment_scale *= global_scale_value
+	$floor.reset_position()
+	#
+	$background.scale *= global_scale_value
+	#
+	$game_title/fwappy.get_font("font").size *= global_scale_value
+	$game_title/fwappy.get_font("font").outline_size *= global_scale_value
+	#
+	$game_title/bird.get_font("font").size *= global_scale_value
+	$game_title/bird.get_font("font").outline_size *= global_scale_value
+	#
+	$tap_to_start_label.get_font("font").size *= global_scale_value
+	$tap_to_start_label.get_font("font").outline_size *= global_scale_value
+	#
+	$h_box_container/author.get_font("font").size *= global_scale_value
+	$h_box_container/author.get_font("font").outline_size *= global_scale_value
 
 
 

@@ -6,14 +6,19 @@ var obstacle_scene = preload("res://scenes/obstacle.tscn")
 var bird_scene = preload("res://scenes/bird.tscn")
 
 
+export(float) var global_scale_value = 1
+
+
 signal point_captured
 signal game_over
 
 
 func _ready():
+	to_scale()
 	create_ceil()
 	randomize()
 	$obstacle_trigger.position.x = get_viewport().size.x
+	$floor.reset_position()
 
 
 
@@ -83,6 +88,26 @@ func clear():
 		obstacle.queue_free()
 	$bird.queue_free()
 	remove_child($bird)
+
+
+
+func to_scale():
+	$floor.scrolling_speed *= global_scale_value
+	$floor.segment_scale *= global_scale_value
+	$floor.reset_position()
+	#
+	$obstacles.scrolling_speed *= global_scale_value
+	$obstacles.destoying_distance *= global_scale_value
+	$obstacles.gap *= 1
+	$obstacles.obstacle_scale *= global_scale_value
+	$obstacles.obstacle_interval *= global_scale_value
+	#
+	$bird_settings.gravity *= global_scale_value
+	$bird_settings.flap_speed *= global_scale_value
+	$bird_settings.fall_speed_limit *= global_scale_value
+	$bird_settings.rotation_speed /= global_scale_value
+	$bird_settings.bird_scale *= global_scale_value
+
 
 
 
