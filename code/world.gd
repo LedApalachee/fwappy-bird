@@ -13,17 +13,19 @@ signal game_over
 func _ready():
 	create_ceil()
 	randomize()
-	$obstacles.set_physics_process(false)
-	$floor.set_physics_process(false)
 	$obstacle_trigger.position.x = get_viewport().size.x
-	#create_bird(load("res://assets/bodies/body-2.png"))
-	#create_obstacle(get_viewport().size.x + 800, get_viewport().size.y * (1 - $floor.fill_ratio) / 2)
 
 
 
 func enable_scrolling():
-	$obstacles.set_physics_process(true)
+	for obstacle in $obstacles.get_children():
+		obstacle.set_physics_process(true)
 	$floor.set_physics_process(true)
+
+func disable_scrolling():
+	for obstacle in $obstacles.get_children():
+		obstacle.set_physics_process(false)
+	$floor.set_physics_process(false)
 
 
 
@@ -97,9 +99,7 @@ func _on_bird_bumped():
 	$bird.is_alive = false
 	$bird.fall_speed_limit *= 100
 	$bird.gravity *= 2
-	for obstacle in $obstacles.get_children():
-		obstacle.scrolling_speed = 0
-	$floor.set_physics_process(false)
+	disable_scrolling()
 	emit_signal("game_over")
 
 
