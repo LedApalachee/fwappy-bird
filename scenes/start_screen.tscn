@@ -30,7 +30,7 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 10
+size = 7
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=7]
@@ -144,8 +144,9 @@ margin_right = -20.0
 margin_bottom = 15.0
 
 [node name="author" type="Label" parent="h_box_container"]
-margin_right = 252.0
-margin_bottom = 29.0
+margin_top = 4.0
+margin_right = 240.0
+margin_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 15
@@ -157,8 +158,8 @@ align = 1
 valign = 1
 
 [node name="reset_score_button" type="Button" parent="h_box_container"]
-margin_left = 256.0
-margin_right = 356.0
+margin_left = 244.0
+margin_right = 344.0
 margin_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
