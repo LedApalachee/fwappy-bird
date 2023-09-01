@@ -69,6 +69,11 @@ func to_scale():
 	#
 	$background.scale *= global_scale_value
 	#
+	$game_title.margin_left *= global_scale_value
+	$game_title.margin_top *= global_scale_value
+	$game_title.margin_right *= global_scale_value
+	$game_title.margin_bottom *= global_scale_value
+	#
 	$game_title/fwappy.get_font("font").size *= global_scale_value
 	$game_title/fwappy.get_font("font").outline_size *= global_scale_value
 	#
