@@ -23,6 +23,7 @@ scrolling_speed = 175.0
 gap = 80.0
 obstacle_scale = 3.0
 obstacle_interval = 275.0
+max_height_diff = 300.0
 
 [node name="bird_settings" type="Node" parent="."]
 script = ExtResource( 1 )

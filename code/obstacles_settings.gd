@@ -5,3 +5,4 @@ export(float) var destoying_distance = -100
 export(float) var gap = 74
 export(float) var obstacle_scale = 5
 export(float) var obstacle_interval = 100
+export(float) var max_height_diff = 100
