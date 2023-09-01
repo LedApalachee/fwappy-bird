@@ -80,6 +80,9 @@ func to_scale():
 	#
 	$h_box_container/author.get_font("font").size *= global_scale_value
 	$h_box_container/author.get_font("font").outline_size *= global_scale_value
+	#
+	$h_box_container/reset_score_button.get_font("font").size *= global_scale_value
+	$h_box_container/reset_score_button.get_font("font").outline_size *= global_scale_value
 
 
 

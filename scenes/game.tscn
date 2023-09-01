@@ -63,6 +63,7 @@ tracks/1/keys = {
 
 [node name="game" type="Node"]
 script = ExtResource( 1 )
+global_scale_value = 3.0
 
 [node name="background" type="Node2D" parent="."]
 
@@ -86,6 +87,8 @@ margin_left = -66.0
 margin_top = -66.0
 margin_right = 66.0
 margin_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
 custom_fonts/font = SubResource( 1 )
 align = 1
 valign = 1
@@ -100,10 +103,14 @@ margin_left = -191.0
 margin_top = -48.0
 margin_right = 192.0
 margin_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="you_hit_the_score" type="Label" parent="ui/game_over"]
 margin_right = 383.0
 margin_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 5 )
 text = "You've hit the score!"
@@ -114,6 +121,8 @@ valign = 1
 margin_top = 33.0
 margin_right = 383.0
 margin_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 6 )
 text = "Max count: 12"
@@ -124,6 +133,8 @@ valign = 1
 margin_top = 67.0
 margin_right = 383.0
 margin_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 4 )
 text = "Tap to continue"

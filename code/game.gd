@@ -94,6 +94,23 @@ func _input(event):
 
 func to_scale():
 	$background.scale *= global_scale_value
+	#
+	$ui/count_label.get_font("font").size *= global_scale_value
+	$ui/count_label.get_font("font").outline_size *= global_scale_value
+	#
+	$ui/game_over.margin_left *= global_scale_value
+	$ui/game_over.margin_top *= global_scale_value
+	$ui/game_over.margin_right *= global_scale_value
+	$ui/game_over.margin_bottom *= global_scale_value
+	#
+	$ui/game_over/you_hit_the_score.get_font("font").size *= global_scale_value
+	$ui/game_over/you_hit_the_score.get_font("font").outline_size *= global_scale_value
+	#
+	$ui/game_over/old_score_label.get_font("font").size *= global_scale_value
+	$ui/game_over/old_score_label.get_font("font").outline_size *= global_scale_value
+	#
+	$ui/game_over/tap_to_continue.get_font("font").size *= global_scale_value
+	$ui/game_over/tap_to_continue.get_font("font").outline_size *= global_scale_value
 
 
 
