@@ -1,5 +1,8 @@
 extends Node
 
+export(float) var global_scale_value = 1
+
+
 var score_file = File.new()
 var no_score_file = false
 var bird_bodies = []
@@ -67,6 +70,7 @@ func new_run():
 func _ready():
 	load_score()
 	load_bird_bodies()
+	to_scale()
 	$background.position.y = get_viewport().size.y * (1 - $world/floor.fill_ratio)
 	$background.position.x = get_viewport().size.x / 2
 	new_run()
@@ -85,6 +89,11 @@ func _input(event):
 						current_state = GameState.AT_PLAYING
 						$ui/game_over.visible = false
 						count = 0
+
+
+
+func to_scale():
+	$background.scale *= global_scale_value
 
 
 
