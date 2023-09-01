@@ -14,6 +14,7 @@ signal game_over
 
 
 func _ready():
+	prev_obstacle_pos_y = get_viewport().size.y / 2
 	to_scale()
 	create_ceil()
 	randomize()
@@ -42,6 +43,8 @@ func create_ceil():
 
 
 
+var prev_obstacle_pos_y
+
 func create_obstacle(pos_x, pos_y = -1):
 	var new_obstacle = obstacle_scene.instance()
 	new_obstacle.position.x = pos_x
@@ -49,7 +52,15 @@ func create_obstacle(pos_x, pos_y = -1):
 	if pos_y < 0:
 		var min_y = ($obstacles.gap/2) * $obstacles.obstacle_scale
 		var max_y = get_viewport().size.y - ($obstacles.gap/2) * $obstacles.obstacle_scale - get_viewport().size.y * $floor.fill_ratio
+		
+		if prev_obstacle_pos_y - min_y > $obstacles.max_height_diff:
+			min_y = prev_obstacle_pos_y - $obstacles.max_height_diff
+
+		if max_y - prev_obstacle_pos_y > $obstacles.max_height_diff:
+			max_y = prev_obstacle_pos_y + $obstacles.max_height_diff
+		
 		new_obstacle.position.y = (randi() % int(max_y - min_y + 1)) + min_y
+		prev_obstacle_pos_y = new_obstacle.position.y
 	else:
 		new_obstacle.position.y = pos_y
 
@@ -101,6 +112,7 @@ func to_scale():
 	$obstacles.gap *= 1
 	$obstacles.obstacle_scale *= global_scale_value
 	$obstacles.obstacle_interval *= global_scale_value
+	$obstacles.max_height_diff *= global_scale_value
 	#
 	$bird_settings.gravity *= global_scale_value
 	$bird_settings.flap_speed *= global_scale_value
